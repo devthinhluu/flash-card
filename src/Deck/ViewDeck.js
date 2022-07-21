@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import CardsList from "../Card/CardsList";
 
 export default function ViewDeck({ deck, cards }) {
+	//.log(deck, cards);
 	const { url } = useRouteMatch();
+	console.log(url);
 	return deck ? (
 		<div className='container'>
 			{/* Bread crumb nav bar */}
@@ -24,7 +26,7 @@ export default function ViewDeck({ deck, cards }) {
 				<a href='#' className='btn btn-info mr-2'>
 					Edit
 				</a>
-				<a href='#' className='btn btn-primary mr-2'>
+				<a href={`${url}/study`} className='btn btn-primary mr-2'>
 					Study
 				</a>
 				<a href={`${url}/cards/new`} className='btn btn-secondary'>
