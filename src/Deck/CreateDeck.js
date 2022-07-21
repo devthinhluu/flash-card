@@ -18,12 +18,12 @@ export default function CreateDeck() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const newDeck = [
+			...decks,
 			{
 				id: newDeckID + 1,
 				title,
 				desc,
 			},
-			...decks,
 		];
 
 		localStorage.setItem("decks", JSON.stringify(newDeck));
