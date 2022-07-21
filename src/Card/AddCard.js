@@ -17,13 +17,13 @@ export default function AddCard({ deck }) {
 		localStorage.setItem(
 			"cards",
 			JSON.stringify([
+				...cards,
 				{
 					id: newCardID + 1,
 					front,
 					back,
 					deckId: deck.id,
 				},
-				...cards,
 			])
 		);
 		console.log("card added", front, back);
