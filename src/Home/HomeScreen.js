@@ -15,7 +15,12 @@ export default function HomeScreen() {
 			<a href='/decks/new' className='btn btn-secondary'>
 				Create Deck
 			</a>
-			<ul className='list-group mt-3'>{deckList}</ul>
+			<ul className='list-group mt-3'>
+				<li class='list-group-item active pb-1'>
+					<h4>Decks</h4>
+				</li>
+				{deckList}
+			</ul>
 		</div>
 	);
 }
