@@ -78,7 +78,7 @@ export default function AddCard({ deck }) {
 					Done
 				</a>
 				<button className='btn btn-primary' type='submit'>
-					Savesdfsdffs
+					Save
 				</button>
 			</form>
 		</div>
