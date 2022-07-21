@@ -7,10 +7,10 @@ export default function CardsList({ cards }) {
 				<p className='col'>{card.front}</p>
 				<p className='col'>{card.back}</p>
 				<section className='card-op-buttons'>
-					<a href='#' className='btn btn-secondary'>
+					<a href='#' className='btn btn-secondary mr-2'>
 						Edit Card
 					</a>
-					<button className='btn btn-danger ml-2'>Delete Card</button>
+					<button className='btn btn-danger mr-2'>Delete Card</button>
 				</section>
 			</div>
 		</li>
