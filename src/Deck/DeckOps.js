@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ViewDeck from "./ViewDeck";
+import StudyDeck from "./StudyDeck";
 import AddCard from "../Card/AddCard";
 
 export default function DeckOps() {
@@ -21,28 +22,22 @@ export default function DeckOps() {
 			cards = JSON.parse(cards);
 			const decksCards = cards.filter((card) => card.deckId === Number(deckId));
 			setCards(decksCards);
+			console.log("triggered");
 		}
-	}, [deckId]);
+	}, []);
+	//console.log(cards);
 	const { path } = useRouteMatch();
-
-	// function addCard() {
-	// 	localStorage.setItem("cards", [
-	// 		{
-	// 			id: newCardID + 1,
-	// 			front,
-	// 			back,
-	// 		},
-	// 		...cards,
-	// 	]);
-	// }
-
+	if (!deck || !cards) return <h1>Page not found</h1>;
 	return (
 		<section>
 			<Switch>
 				<Route path={`${path}/cards/new`}>
 					<AddCard deck={deck} />
 				</Route>
-				<Route path={path}>
+				<Route path={`${path}/study`}>
+					<StudyDeck deck={deck} cards={cards} />
+				</Route>
+				<Route exact path={path}>
 					<ViewDeck deck={deck} cards={cards} />
 				</Route>
 			</Switch>
