@@ -8,18 +8,6 @@ export default function StudyDeck({ deck, cards }) {
 	const [currentCard, setCurrentCard] = useState(0);
 	const [isStarted, setisStarted] = useState(false);
 	const [isFlipped, setIsFlipped] = useState(false);
-	const { url } = useRouteMatch();
-
-	//console.log(cards);
-	// useEffect(() => {
-	// 	let cards = localStorage.getItem("cards");
-	// 	if (cards) {
-	// 		cards = JSON.parse(cards);
-	// 		const decksCards = cards.filter((card) => card.deckId === deckId);
-	// 		setCards(decksCards);
-	// 	}
-	// 	console.log("from useEffect");
-	// }, []);
 
 	function handleFlipCard() {
 		setIsFlipped((prevFront) => !prevFront);
@@ -36,6 +24,22 @@ export default function StudyDeck({ deck, cards }) {
 
 	return (
 		<div className='container'>
+			<section>
+				{/* Bread crumb nav bar */}
+				<nav aria-label='breadcrumb'>
+					<ol className='breadcrumb'>
+						<li className='breadcrumb-item'>
+							<a href='/'>Home</a>
+						</li>
+						<li className='breadcrumb-item' aria-current='page'>
+							<a href={`/decks/${deck.id}`}>{deck.title}</a>
+						</li>
+						<li className='breadcrumb-item active' aria-current='page'>
+							Study
+						</li>
+					</ol>
+				</nav>
+			</section>
 			<h2>{deck.title}: Study</h2>
 			{cards.length >= MIN_CARDS ? (
 				<div class='card'>
