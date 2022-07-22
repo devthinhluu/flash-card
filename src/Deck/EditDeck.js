@@ -19,7 +19,7 @@ export default function EditDeck({ deck, url }) {
 			setDesc(currentDeck.desc);
 			setDecks(decks);
 		}
-	}, []);
+	}, [deckId]);
 
 	function handleSubmit(e) {
 		e.preventDefault();

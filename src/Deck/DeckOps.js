@@ -5,6 +5,7 @@ import ViewDeck from "./ViewDeck";
 import StudyDeck from "./StudyDeck";
 import AddCard from "../Card/AddCard";
 import EditDeck from "./EditDeck";
+import EditCard from "../Card/EditCard";
 
 export default function DeckOps() {
 	const [decks, setDecks] = useState([]);
@@ -19,7 +20,6 @@ export default function DeckOps() {
 		if (decks) {
 			decks = JSON.parse(decks);
 			const deckWanted = decks.find((deck) => deck.id === Number(deckId));
-
 			setDecks(decks);
 			setDeck(deckWanted);
 		}
@@ -35,6 +35,9 @@ export default function DeckOps() {
 	return (
 		<section>
 			<Switch>
+				<Route path={`${path}/cards/:cardId/edit`}>
+					<EditCard deck={deck} url={url} />
+				</Route>
 				<Route path={`${path}/cards/new`}>
 					<AddCard deck={deck} />
 				</Route>

@@ -4,21 +4,27 @@ import { useState, useEffect } from "react";
 import CardsList from "../Card/CardsList";
 
 export default function ViewDeck({ cards }) {
+	const [allCards, setAllCards] = useState([]);
 	const [allDecks, setAllDecks] = useState([]);
 	const [currentDeck, setCurrentDeck] = useState([]);
 	const { deckId } = useParams("deckId");
 	const { url } = useRouteMatch();
 	const history = useHistory();
-	const allCards = JSON.parse(localStorage.getItem("cards")) || [];
+	//
 
 	useEffect(() => {
 		let decksFromStorage = localStorage.getItem("decks");
+		let cards = localStorage.getItem("cards");
 		if (decksFromStorage) {
 			decksFromStorage = JSON.parse(decksFromStorage);
 			setAllDecks(decksFromStorage);
 			setCurrentDeck(
 				decksFromStorage.find((deck) => deck.id === Number(deckId))
 			);
+		}
+		if (cards) {
+			cards = JSON.parse(cards);
+			setAllCards(cards);
 		}
 	}, []);
 
@@ -37,7 +43,7 @@ export default function ViewDeck({ cards }) {
 			history.push("/");
 		}
 	}
-	console.log(currentDeck.title, currentDeck.desc, "from view");
+
 	return currentDeck ? (
 		<div className='container'>
 			{/* Bread crumb nav bar */}
@@ -71,7 +77,7 @@ export default function ViewDeck({ cards }) {
 				</button>
 			</section>
 			<section className='cardsList mt-4'>
-				<CardsList cards={cards} />
+				<CardsList cards={cards} deckId={deckId} />
 			</section>
 		</div>
 	) : (

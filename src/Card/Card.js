@@ -1,11 +1,22 @@
 import React from "react";
+import { useRouteMatch } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 /* 
 Individual card that are used to render a list of cards when you view the deck 
 */
 
 export default function Card({ card }) {
-	const allCards = JSON.parse(localStorage.getItem("cards"));
+	const [allCards, setAllCards] = useState([]);
+	const { url } = useRouteMatch();
+
+	useEffect(() => {
+		let cards = localStorage.getItem("cards");
+		if (cards) {
+			cards = JSON.parse(cards);
+			setAllCards(cards);
+		}
+	}, []);
 
 	function handleDeleteCard() {
 		if (
@@ -22,7 +33,10 @@ export default function Card({ card }) {
 				<p className='col'>{card.front}</p>
 				<p className='col'>{card.back}</p>
 				<section className='card-op-buttons'>
-					<a href='#' className='btn btn-secondary mr-2'>
+					<a
+						href={`${url}/cards/${card.id}/edit`}
+						className='btn btn-secondary mr-2'
+					>
 						Edit Card
 					</a>
 					<button className='btn btn-danger mr-2' onClick={handleDeleteCard}>
