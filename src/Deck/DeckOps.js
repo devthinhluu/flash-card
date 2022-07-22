@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import ViewDeck from "./ViewDeck";
 import StudyDeck from "./StudyDeck";
 import AddCard from "../Card/AddCard";
+import EditDeck from "./EditDeck";
 
 export default function DeckOps() {
 	const [decks, setDecks] = useState([]);
 	const [deck, setDeck] = useState({});
 	const [cards, setCards] = useState([]);
 	const { deckId } = useParams("deckId");
+	const { url } = useRouteMatch();
 
 	useEffect(() => {
 		let decks = localStorage.getItem("decks");
@@ -17,6 +19,7 @@ export default function DeckOps() {
 		if (decks) {
 			decks = JSON.parse(decks);
 			const deckWanted = decks.find((deck) => deck.id === Number(deckId));
+
 			setDecks(decks);
 			setDeck(deckWanted);
 		}
@@ -24,7 +27,6 @@ export default function DeckOps() {
 			cards = JSON.parse(cards);
 			const decksCards = cards.filter((card) => card.deckId === Number(deckId));
 			setCards(decksCards);
-			console.log("triggered");
 		}
 	}, []);
 	//console.log(cards);
@@ -35,6 +37,9 @@ export default function DeckOps() {
 			<Switch>
 				<Route path={`${path}/cards/new`}>
 					<AddCard deck={deck} />
+				</Route>
+				<Route path={`${path}/edit`}>
+					<EditDeck deck={deck} url={url} />
 				</Route>
 				<Route path={`${path}/study`}>
 					<StudyDeck deck={deck} cards={cards} />

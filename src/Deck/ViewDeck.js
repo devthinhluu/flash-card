@@ -3,7 +3,8 @@ import { useParams, useRouteMatch, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardsList from "../Card/CardsList";
 
-export default function ViewDeck({ deck, cards, decks }) {
+export default function ViewDeck({ cards, decks, deck }) {
+	const { deckId } = useParams("deckId");
 	const { url } = useRouteMatch();
 	const history = useHistory();
 	const allCards = JSON.parse(localStorage.getItem("cards")) || [];
@@ -19,6 +20,7 @@ export default function ViewDeck({ deck, cards, decks }) {
 			history.push("/");
 		}
 	}
+	console.log(deck.title, deck.desc, "from view");
 	return deck ? (
 		<div className='container'>
 			{/* Bread crumb nav bar */}
@@ -35,7 +37,7 @@ export default function ViewDeck({ deck, cards, decks }) {
 			<h5>{deck.title}</h5>
 			<p>{deck.desc}</p>
 			<section className='deck-operation-links'>
-				<a href='#' className='btn btn-info mr-2'>
+				<a href={`${url}/edit`} className='btn btn-info mr-2'>
 					Edit
 				</a>
 				<a href={`${url}/study`} className='btn btn-primary mr-2'>

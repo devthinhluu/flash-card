@@ -1,34 +1,40 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
-export default function CreateDeck() {
+export default function EditDeck({ deck, url }) {
 	const [decks, setDecks] = useState([]);
 	const [title, setTitle] = useState("");
 	const [desc, setDesc] = useState("");
-	const newDeckID = decks[decks.length - 1] ? decks[decks.length - 1].id : 0;
 	const history = useHistory();
+	const { deckId } = useParams("deckId");
 
 	// load previous decks from localstorage and store it in state
 	useEffect(() => {
-		const decks = localStorage.getItem("decks");
-		if (decks) setDecks(JSON.parse(decks));
+		let decks = localStorage.getItem("decks");
+		if (decks) {
+			decks = JSON.parse(decks);
+			const currentDeck = decks.find((deck) => deck.id === Number(deckId));
+			setTitle(currentDeck.title);
+			setDesc(currentDeck.desc);
+			setDecks(decks);
+		}
 	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const newDeck = [
-			...decks,
-			{
-				id: newDeckID + 1,
-				title,
-				desc,
-			},
-		];
-
-		localStorage.setItem("decks", JSON.stringify(newDeck));
-		history.push("/");
+		const newDecks = decks.map((deck) => {
+			if (deck.id === Number(deckId)) {
+				return { ...deck, title, desc };
+			} else {
+				return deck;
+			}
+		});
+		console.log(newDecks, "from edit");
+		localStorage.setItem("decks", JSON.stringify(newDecks));
+		history.push(url);
 	}
+
 	return (
 		<div className='container'>
 			{/* Bread crumb nav bar */}
@@ -37,12 +43,15 @@ export default function CreateDeck() {
 					<li className='breadcrumb-item'>
 						<a href='/'>Home</a>
 					</li>
+					<li className='breadcrumb-item'>
+						<a href={`/decks/${deck.id}`}>{deck.title}</a>
+					</li>
 					<li className='breadcrumb-item active' aria-current='page'>
-						Create Deck
+						Edit Deck
 					</li>
 				</ol>
 			</nav>
-			<h4>Create Deck</h4>
+			<h4>Edit Deck</h4>
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
 					<label htmlFor='deck-title'>Title</label>
@@ -72,7 +81,7 @@ export default function CreateDeck() {
 						}}
 					></textarea>
 				</div>
-				<a href='/' className='btn btn-secondary mr-2'>
+				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>
 					Cancel
 				</a>
 				<button className='btn btn-primary' type='submit'>
