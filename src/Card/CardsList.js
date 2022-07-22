@@ -15,5 +15,12 @@ export default function CardsList({ cards }) {
 			</div>
 		</li>
 	));
-	return <ul className='list-group'>{cardsElements}</ul>;
+	return (
+		<ul className='list-group'>
+			<li class='list-group-item active pb-1'>
+				<h4>Cards</h4>
+			</li>
+			{cardsElements}
+		</ul>
+	);
 }
