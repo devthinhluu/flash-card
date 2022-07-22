@@ -5,21 +5,18 @@ import { useRouteMatch } from "react-router-dom";
 const MIN_CARDS = 3;
 
 export default function StudyDeck({ deck, cards }) {
-	const [currentCard, setCurrentCard] = useState(0);
-	const [isStarted, setisStarted] = useState(false);
+	const [cardIndex, setCardIndex] = useState(0);
 	const [isFlipped, setIsFlipped] = useState(false);
 
 	function handleFlipCard() {
 		setIsFlipped((prevFront) => !prevFront);
-		setisStarted(true);
 	}
 
 	function handleNext() {
-		if (currentCard < cards.length - 1) {
-			setCurrentCard((prevCurrentCard) => prevCurrentCard + 1);
-			setisStarted(false);
-			setIsFlipped(false);
-		}
+		setCardIndex((prevCardIndex) => prevCardIndex + 1);
+	}
+	function handlePrev() {
+		setCardIndex((prevCardIndex) => prevCardIndex - 1);
 	}
 
 	return (
@@ -44,20 +41,29 @@ export default function StudyDeck({ deck, cards }) {
 			{cards.length >= MIN_CARDS ? (
 				<div class='card'>
 					<div class='card-body'>
-						<h5 class='card-title'>{`Card ${currentCard + 1} of ${
+						<h5 class='card-title'>{`Card ${cardIndex + 1} of ${
 							cards.length
 						}`}</h5>
 						<p class='card-text'>
-							{isFlipped ? cards[currentCard].front : cards[currentCard].back}
+							{isFlipped ? cards[cardIndex].front : cards[cardIndex].back}
 						</p>
-						<button className='btn btn-secondary' onClick={handleFlipCard}>
+						<button
+							className='btn btn-outline-primary mr-2'
+							disabled={cardIndex <= 0}
+							onClick={handlePrev}
+						>
+							Prev
+						</button>
+						<button className='btn btn-secondary mr-2' onClick={handleFlipCard}>
 							Flip
 						</button>
-						{isStarted && (
-							<button class='btn btn-primary ml-2' onClick={handleNext}>
-								Next
-							</button>
-						)}
+						<button
+							className='btn btn-outline-primary m2-2'
+							disabled={cardIndex >= cards.length - 1}
+							onClick={handleNext}
+						>
+							Next
+						</button>
 					</div>
 				</div>
 			) : (
