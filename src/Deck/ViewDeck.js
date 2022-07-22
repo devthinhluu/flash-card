@@ -6,13 +6,14 @@ import CardsList from "../Card/CardsList";
 export default function ViewDeck({ deck, cards, decks }) {
 	const { url } = useRouteMatch();
 	const history = useHistory();
+	const allCards = JSON.parse(localStorage.getItem("cards")) || [];
 
 	function handleDeleteDeck() {
 		if (
 			window.confirm("Do you want to delete this deck? It cannot be recovered.")
 		) {
 			const newDecks = decks.filter((oldDeck) => oldDeck.id !== deck.id);
-			const newCardsList = cards.filter((card) => card.deckId !== deck.id);
+			const newCardsList = allCards.filter((card) => card.deckId !== deck.id);
 			localStorage.setItem("decks", JSON.stringify(newDecks));
 			localStorage.setItem("cards", JSON.stringify(newCardsList));
 			history.push("/");

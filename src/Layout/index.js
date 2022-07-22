@@ -10,7 +10,7 @@ export default function Layout() {
 	return (
 		<div>
 			<Header />
-			<div className='container'>
+			<div className='container mb-3'>
 				{/* TODO */}
 				<Switch>
 					<Route path='/decks/new'>

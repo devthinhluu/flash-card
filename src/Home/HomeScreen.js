@@ -7,7 +7,7 @@ export default function HomeScreen() {
 
 	// displaying the list of decks
 	const deckList = decks.map((deck) => {
-		return <HomeDeck deck={deck} key={deck.id} />;
+		return <HomeDeck deck={deck} key={deck.id} decks={decks} />;
 	});
 
 	return (

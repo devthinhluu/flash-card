@@ -1,11 +1,24 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 
-export default function HomeDeck({ deck }) {
+export default function HomeDeck({ deck, decks }) {
 	const { id, title, desc } = deck;
 	const cards = JSON.parse(localStorage.getItem("cards")) || [];
 	const decksCards = cards.filter((card) => card.deckId === id);
 	const { url } = useRouteMatch();
+	const history = useHistory();
+
+	function handleDeleteDeck() {
+		if (
+			window.confirm("Do you want to delete this deck? It cannot be recovered.")
+		) {
+			const newDecks = decks.filter((oldDeck) => oldDeck.id !== deck.id);
+			const newCardsList = cards.filter((card) => card.deckId !== deck.id);
+			localStorage.setItem("decks", JSON.stringify(newDecks));
+			localStorage.setItem("cards", JSON.stringify(newCardsList));
+			window.location.reload();
+		}
+	}
 
 	return (
 		<li className='list-group-item list-group-item-action'>
@@ -20,7 +33,10 @@ export default function HomeDeck({ deck }) {
 			<a href={`${url}decks/${id}/study`} className='btn btn-secondary'>
 				Study
 			</a>
-			<button className='btn btn-outline-danger float-right'>
+			<button
+				className='btn btn-outline-danger float-right'
+				onClick={handleDeleteDeck}
+			>
 				Delete Deck
 			</button>
 		</li>
