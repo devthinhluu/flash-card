@@ -1,12 +1,23 @@
 import React from "react";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { useParams, useRouteMatch, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardsList from "../Card/CardsList";
 
-export default function ViewDeck({ deck, cards }) {
-	//.log(deck, cards);
+export default function ViewDeck({ deck, cards, decks }) {
 	const { url } = useRouteMatch();
-	console.log(url);
+	const history = useHistory();
+
+	function handleDeleteDeck() {
+		if (
+			window.confirm("Do you want to delete this deck? It cannot be recovered.")
+		) {
+			const newDecks = decks.filter((oldDeck) => oldDeck.id !== deck.id);
+			const newCardsList = cards.filter((card) => card.deckId !== deck.id);
+			localStorage.setItem("decks", JSON.stringify(newDecks));
+			localStorage.setItem("cards", JSON.stringify(newCardsList));
+			history.push("/");
+		}
+	}
 	return deck ? (
 		<div className='container'>
 			{/* Bread crumb nav bar */}
@@ -32,12 +43,14 @@ export default function ViewDeck({ deck, cards }) {
 				<a href={`${url}/cards/new`} className='btn btn-secondary'>
 					Add Cards
 				</a>
-				<a href='#' className='btn btn-danger float-right'>
+				<button
+					onClick={handleDeleteDeck}
+					className='btn btn-danger float-right'
+				>
 					Delete Deck
-				</a>
+				</button>
 			</section>
-			<section className='cardsList mt-3'>
-				<h3>Cards</h3>
+			<section className='cardsList mt-4'>
 				<CardsList cards={cards} />
 			</section>
 		</div>
