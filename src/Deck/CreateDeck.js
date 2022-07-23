@@ -77,12 +77,12 @@ export default function CreateDeck() {
 						}}
 					></textarea>
 				</div>
-				<a href='/' className='btn btn-secondary mr-2'>
-					Cancel
-				</a>
 				<button className='btn btn-primary' type='submit'>
 					Submit
 				</button>
+				<a href='/' className='btn btn-secondary mr-2'>
+					Cancel
+				</a>
 			</form>
 		</div>
 	);

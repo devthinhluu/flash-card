@@ -87,7 +87,6 @@ export default function EditCard({ deck, url }) {
 						}}
 					></textarea>
 				</div>
-
 				<button className='btn btn-primary mr-2' type='submit'>
 					Save
 				</button>

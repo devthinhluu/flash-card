@@ -84,12 +84,12 @@ export default function EditDeck({ deck, url }) {
 						}}
 					></textarea>
 				</div>
-				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>
-					Cancel
-				</a>
 				<button className='btn btn-primary' type='submit'>
 					Submit
 				</button>
+				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>
+					Cancel
+				</a>
 			</form>
 		</div>
 	);
