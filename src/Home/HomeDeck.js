@@ -1,12 +1,19 @@
 import React from "react";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-export default function HomeDeck({ deck, decks }) {
+export default function HomeDeck({ deck }) {
+	const [decks, setDecks] = useState([]);
 	const { id, title, desc } = deck;
 	const cards = JSON.parse(localStorage.getItem("cards")) || [];
 	const decksCards = cards.filter((card) => card.deckId === id);
 	const { url } = useRouteMatch();
 	const history = useHistory();
+
+	useEffect(() => {
+		const decks = localStorage.getItem("decks");
+		if (decks) setDecks(JSON.parse(decks));
+	}, []);
 
 	function handleDeleteDeck() {
 		if (

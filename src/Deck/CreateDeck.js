@@ -7,6 +7,7 @@ export default function CreateDeck() {
 	const [title, setTitle] = useState("");
 	const [desc, setDesc] = useState("");
 	const newDeckID = decks[decks.length - 1] ? decks[decks.length - 1].id : 0;
+	console.log(newDeckID);
 	const history = useHistory();
 
 	// load previous decks from localstorage and store it in state

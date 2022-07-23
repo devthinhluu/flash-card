@@ -40,7 +40,7 @@ export default function StudyDeck({ deck, cards }) {
 					</ol>
 				</nav>
 			</section>
-			<h2>{deck.title}: Study</h2>
+			<h3>{deck.title}: Study</h3>
 			{cards.length >= MIN_CARDS ? (
 				<div class='card'>
 					<div class='card-body'>
@@ -71,10 +71,14 @@ export default function StudyDeck({ deck, cards }) {
 				</div>
 			) : (
 				<div>
-					<h3>Not enough cards.</h3>
+					<h4>Not enough cards.</h4>
 					<p>{`You need at least 3 cards. You current have ${cards.length} cards.`}</p>
-					<a href={`/decks/${deck.id}/cards/new`} className='btn btn-secondary'>
-						Add Cards
+					<a
+						href={`/decks/${deck.id}/cards/new`}
+						className='btn btn-outline-secondary'
+					>
+						<i class='fa-solid fa-plus'></i>
+						{" Add Cards"}
 					</a>
 				</div>
 			)}

@@ -87,12 +87,13 @@ export default function EditCard({ deck, url }) {
 						}}
 					></textarea>
 				</div>
+
+				<button className='btn btn-primary mr-2' type='submit'>
+					Save
+				</button>
 				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>
 					Cancel
 				</a>
-				<button className='btn btn-primary' type='submit'>
-					Save
-				</button>
 			</form>
 		</div>
 	);
