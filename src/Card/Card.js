@@ -35,12 +35,13 @@ export default function Card({ card }) {
 				<section className='card-op-buttons'>
 					<a
 						href={`${url}/cards/${card.id}/edit`}
-						className='btn btn-secondary mr-2'
+						className='btn btn-outline-info mr-2'
 					>
-						Edit Card
+						<i class='fa-solid fa-pencil'></i>
+						{" Edit"}
 					</a>
 					<button className='btn btn-danger mr-2' onClick={handleDeleteCard}>
-						Delete Card
+						<i class='fa-solid fa-trash-can'></i>
 					</button>
 				</section>
 			</div>

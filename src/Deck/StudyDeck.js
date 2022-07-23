@@ -26,7 +26,10 @@ export default function StudyDeck({ deck, cards }) {
 				<nav aria-label='breadcrumb'>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='/'>Home</a>
+							<a href='/'>
+								<i class='fa-solid fa-house'></i>
+								{" Home"}
+							</a>
 						</li>
 						<li className='breadcrumb-item' aria-current='page'>
 							<a href={`/decks/${deck.id}`}>{deck.title}</a>
@@ -52,9 +55,9 @@ export default function StudyDeck({ deck, cards }) {
 							disabled={cardIndex <= 0}
 							onClick={handlePrev}
 						>
-							Prev
+							<i class='fa-solid fa-left-long'></i>
 						</button>
-						<button className='btn btn-secondary mr-2' onClick={handleFlipCard}>
+						<button className='btn btn-primary mr-2' onClick={handleFlipCard}>
 							Flip
 						</button>
 						<button
@@ -62,7 +65,7 @@ export default function StudyDeck({ deck, cards }) {
 							disabled={cardIndex >= cards.length - 1}
 							onClick={handleNext}
 						>
-							Next
+							<i class='fa-solid fa-right-long'></i>
 						</button>
 					</div>
 				</div>

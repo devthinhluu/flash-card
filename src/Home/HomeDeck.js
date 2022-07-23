@@ -27,17 +27,17 @@ export default function HomeDeck({ deck, decks }) {
 				<small>{decksCards.length} cards</small>
 			</div>
 			<p className='mb-2'>{desc}</p>
-			<a href={`${url}decks/${id}`} className='btn btn-primary mr-2'>
-				View
+
+			<a href={`${url}decks/${id}/study`} className='btn btn-primary mr-2'>
+				<i class='fa-solid fa-book-open'></i>
+				{" Study"}
 			</a>
-			<a href={`${url}decks/${id}/study`} className='btn btn-secondary'>
-				Study
+			<a href={`${url}decks/${id}`} className='btn btn-outline-secondary mr-2'>
+				<i class='fa-solid fa-eye'></i>
+				{" View"}
 			</a>
-			<button
-				className='btn btn-outline-danger float-right'
-				onClick={handleDeleteDeck}
-			>
-				Delete Deck
+			<button className='btn btn-danger float-right' onClick={handleDeleteDeck}>
+				<i class='fa-solid fa-trash-can'></i>
 			</button>
 		</li>
 	);

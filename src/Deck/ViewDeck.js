@@ -10,7 +10,6 @@ export default function ViewDeck({ cards }) {
 	const { deckId } = useParams("deckId");
 	const { url } = useRouteMatch();
 	const history = useHistory();
-	//
 
 	useEffect(() => {
 		let decksFromStorage = localStorage.getItem("decks");
@@ -50,7 +49,10 @@ export default function ViewDeck({ cards }) {
 			<nav aria-label='breadcrumb'>
 				<ol className='breadcrumb'>
 					<li className='breadcrumb-item'>
-						<a href='/'>Home</a>
+						<a href='/'>
+							<i class='fa-solid fa-house'></i>
+							{" Home"}
+						</a>
 					</li>
 					<li className='breadcrumb-item active' aria-current='page'>
 						{currentDeck.title}
@@ -60,23 +62,28 @@ export default function ViewDeck({ cards }) {
 			<h5>{currentDeck.title}</h5>
 			<p>{currentDeck.desc}</p>
 			<section className='deck-operation-links'>
-				<a href={`${url}/edit`} className='btn btn-info mr-2'>
-					Edit
-				</a>
 				<a href={`${url}/study`} className='btn btn-primary mr-2'>
-					Study
+					<i class='fa-solid fa-book-open'></i>
+					{" Study"}
 				</a>
-				<a href={`${url}/cards/new`} className='btn btn-secondary'>
-					Add Cards
+
+				<a href={`${url}/edit`} className='btn btn-info mr-2'>
+					<i class='fa-solid fa-pencil'></i>
+					{" Edit"}
+				</a>
+				<a href={`${url}/cards/new`} className='btn btn-outline-secondary mr-2'>
+					<i class='fa-solid fa-plus'></i>
+					{" Add Cards"}
 				</a>
 				<button
 					onClick={handleDeleteDeck}
 					className='btn btn-danger float-right'
 				>
-					Delete Deck
+					<i class='fa-solid fa-trash-can'></i>
 				</button>
 			</section>
 			<section className='cardsList mt-4'>
+				<h3>Cards</h3>
 				<CardsList cards={cards} deckId={deckId} />
 			</section>
 		</div>

@@ -17,12 +17,5 @@ export default function CardsList({ deckId }) {
 		}
 	}, []);
 	const cardsElements = currentCards.map((card) => <Card card={card} />);
-	return (
-		<ul className='list-group'>
-			<li class='list-group-item active pb-1'>
-				<h4>Cards</h4>
-			</li>
-			{cardsElements}
-		</ul>
-	);
+	return <ul className='list-group'>{cardsElements}</ul>;
 }

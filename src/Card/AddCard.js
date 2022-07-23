@@ -34,7 +34,10 @@ export default function AddCard({ deck }) {
 			<nav aria-label='breadcrumb'>
 				<ol className='breadcrumb'>
 					<li className='breadcrumb-item'>
-						<a href='/'>Home</a>
+						<a href='/'>
+							<i class='fa-solid fa-house'></i>
+							{" Home"}
+						</a>
 					</li>
 					<li className='breadcrumb-item'>
 						<a href={`/decks/${deck.id}`}>{deck.title}</a>
