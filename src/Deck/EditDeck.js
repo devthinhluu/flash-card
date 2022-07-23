@@ -84,7 +84,7 @@ export default function EditDeck({ deck, url }) {
 						}}
 					></textarea>
 				</div>
-				<button className='btn btn-primary' type='submit'>
+				<button className='btn btn-primary mr-2' type='submit'>
 					Submit
 				</button>
 				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>

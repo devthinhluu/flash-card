@@ -77,7 +77,7 @@ export default function CreateDeck() {
 						}}
 					></textarea>
 				</div>
-				<button className='btn btn-primary' type='submit'>
+				<button className='btn btn-primary mr-2' type='submit'>
 					Submit
 				</button>
 				<a href='/' className='btn btn-secondary mr-2'>
