@@ -19,7 +19,7 @@ export default function Layout() {
 					<Route path='/decks/:deckId'>
 						<DeckOps />
 					</Route>
-					<Route path='/'>
+					<Route exact path='/'>
 						<HomeScreen />
 					</Route>
 					<NotFound />
