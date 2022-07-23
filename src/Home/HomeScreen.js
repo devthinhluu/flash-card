@@ -35,7 +35,12 @@ export default function HomeScreen() {
 				{" Create New Deck"}
 			</a>
 			<ul className='list-group mt-3'>{deckList}</ul>
-			{decks.length === 0 && <button onClick={addExamples}>Examples</button>}
+			{decks.length === 0 && (
+				<button className='btn btn-outline-info' onClick={addExamples}>
+					<i className='fa-solid fa-plus'></i>
+					{" Create Examples"}
+				</button>
+			)}
 		</div>
 	);
 }

@@ -26,7 +26,6 @@ export default function AddCard({ deck }) {
 				},
 			])
 		);
-		console.log("card added", front, back);
 	}
 	return (
 		<div className='container'>
@@ -77,12 +76,13 @@ export default function AddCard({ deck }) {
 						}}
 					></textarea>
 				</div>
+
+				<button className='btn btn-primary mr-2' type='submit'>
+					Save
+				</button>
 				<a href={`/decks/${deck.id}`} className='btn btn-secondary mr-2'>
 					Done
 				</a>
-				<button className='btn btn-primary' type='submit'>
-					Save
-				</button>
 			</form>
 		</div>
 	);
