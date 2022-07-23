@@ -42,7 +42,7 @@ export default function EditDeck({ deck, url }) {
 				<ol className='breadcrumb'>
 					<li className='breadcrumb-item'>
 						<a href='/'>
-							<i class='fa-solid fa-house'></i>
+							<i className='fa-solid fa-house'></i>
 							{" Home"}
 						</a>
 					</li>

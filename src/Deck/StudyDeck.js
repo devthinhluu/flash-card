@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useRouteMatch } from "react-router-dom";
 
 const MIN_CARDS = 3;
 
@@ -14,9 +13,11 @@ export default function StudyDeck({ deck, cards }) {
 
 	function handleNext() {
 		setCardIndex((prevCardIndex) => prevCardIndex + 1);
+		setIsFlipped(false);
 	}
 	function handlePrev() {
 		setCardIndex((prevCardIndex) => prevCardIndex - 1);
+		setIsFlipped(false);
 	}
 
 	return (
@@ -27,7 +28,7 @@ export default function StudyDeck({ deck, cards }) {
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
 							<a href='/'>
-								<i class='fa-solid fa-house'></i>
+								<i className='fa-solid fa-house'></i>
 								{" Home"}
 							</a>
 						</li>
@@ -42,20 +43,20 @@ export default function StudyDeck({ deck, cards }) {
 			</section>
 			<h3>{deck.title}: Study</h3>
 			{cards.length >= MIN_CARDS ? (
-				<div class='card'>
-					<div class='card-body'>
-						<h5 class='card-title'>{`Card ${cardIndex + 1} of ${
+				<div className='card'>
+					<div className='card-body'>
+						<h5 className='card-title'>{`Card ${cardIndex + 1} of ${
 							cards.length
 						}`}</h5>
-						<p class='card-text'>
-							{isFlipped ? cards[cardIndex].front : cards[cardIndex].back}
+						<p className='card-text'>
+							{isFlipped ? cards[cardIndex].back : cards[cardIndex].front}
 						</p>
 						<button
 							className='btn btn-outline-primary mr-2'
 							disabled={cardIndex <= 0}
 							onClick={handlePrev}
 						>
-							<i class='fa-solid fa-left-long'></i>
+							<i className='fa-solid fa-left-long'></i>
 						</button>
 						<button className='btn btn-primary mr-2' onClick={handleFlipCard}>
 							Flip
@@ -65,7 +66,7 @@ export default function StudyDeck({ deck, cards }) {
 							disabled={cardIndex >= cards.length - 1}
 							onClick={handleNext}
 						>
-							<i class='fa-solid fa-right-long'></i>
+							<i className='fa-solid fa-right-long'></i>
 						</button>
 					</div>
 				</div>
@@ -77,7 +78,7 @@ export default function StudyDeck({ deck, cards }) {
 						href={`/decks/${deck.id}/cards/new`}
 						className='btn btn-outline-secondary'
 					>
-						<i class='fa-solid fa-plus'></i>
+						<i className='fa-solid fa-plus'></i>
 						{" Add Cards"}
 					</a>
 				</div>

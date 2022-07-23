@@ -50,7 +50,7 @@ export default function ViewDeck({ cards }) {
 				<ol className='breadcrumb'>
 					<li className='breadcrumb-item'>
 						<a href='/'>
-							<i class='fa-solid fa-house'></i>
+							<i className='fa-solid fa-house'></i>
 							{" Home"}
 						</a>
 					</li>
@@ -63,23 +63,23 @@ export default function ViewDeck({ cards }) {
 			<p>{currentDeck.desc}</p>
 			<section className='deck-operation-links'>
 				<a href={`${url}/study`} className='btn btn-primary mr-2'>
-					<i class='fa-solid fa-book-open'></i>
+					<i className='fa-solid fa-book-open'></i>
 					{" Study"}
 				</a>
 
 				<a href={`${url}/edit`} className='btn btn-info mr-2'>
-					<i class='fa-solid fa-pencil'></i>
+					<i className='fa-solid fa-pencil'></i>
 					{" Edit"}
 				</a>
 				<a href={`${url}/cards/new`} className='btn btn-outline-secondary mr-2'>
-					<i class='fa-solid fa-plus'></i>
+					<i className='fa-solid fa-plus'></i>
 					{" Add Cards"}
 				</a>
 				<button
 					onClick={handleDeleteDeck}
 					className='btn btn-danger float-right'
 				>
-					<i class='fa-solid fa-trash-can'></i>
+					<i className='fa-solid fa-trash-can'></i>
 				</button>
 			</section>
 			<section className='cardsList mt-4'>

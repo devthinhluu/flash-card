@@ -7,7 +7,7 @@ export default function CreateDeck() {
 	const [title, setTitle] = useState("");
 	const [desc, setDesc] = useState("");
 	const newDeckID = decks[decks.length - 1] ? decks[decks.length - 1].id : 0;
-	console.log(newDeckID);
+	console.log("from create deck");
 	const history = useHistory();
 
 	// load previous decks from localstorage and store it in state
@@ -28,6 +28,7 @@ export default function CreateDeck() {
 		];
 
 		localStorage.setItem("decks", JSON.stringify(newDeck));
+		//console.log("after submitting new deck");
 		history.push("/");
 	}
 	return (
@@ -37,7 +38,7 @@ export default function CreateDeck() {
 				<ol className='breadcrumb'>
 					<li className='breadcrumb-item'>
 						<a href='/'>
-							<i class='fa-solid fa-house'></i>
+							<i className='fa-solid fa-house'></i>
 							{" Home"}
 						</a>
 					</li>

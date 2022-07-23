@@ -37,11 +37,11 @@ export default function Card({ card }) {
 						href={`${url}/cards/${card.id}/edit`}
 						className='btn btn-outline-info mr-2'
 					>
-						<i class='fa-solid fa-pencil'></i>
+						<i className='fa-solid fa-pencil'></i>
 						{" Edit"}
 					</a>
 					<button className='btn btn-danger mr-2' onClick={handleDeleteCard}>
-						<i class='fa-solid fa-trash-can'></i>
+						<i className='fa-solid fa-trash-can'></i>
 					</button>
 				</section>
 			</div>
