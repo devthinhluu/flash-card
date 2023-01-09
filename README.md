@@ -1,4 +1,4 @@
-<strong>About</strong>
+# About
 
 This application was designed to help users study and learn new information in a fun and engaging way. With a mobile-first design, the application can be easily accessed on any device.
 
